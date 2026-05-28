@@ -1,6 +1,6 @@
 /* =====================================================
    X5 Med — Landing Page
-   Identidade: Navy · Technical Blue · Premium Gold
+   Identidade: Navy · Electric Cyan · Blue Gray
    ===================================================== */
 
 /* 1. Variáveis */
@@ -12,8 +12,8 @@
   --blue:    #7FA3C4;
   --blue-glow: rgba(127, 163, 196, 0.18);
   --blue-line: rgba(127, 163, 196, 0.18);
-  --gold:    #E8CDA1;
-  --gold-lt: #F3DEC0;
+  --accent:    #00D2FF;
+  --accent-soft: #61E6FF;
   --white:   #ffffff;
   --off:     #F1F3F5;
   --muted:   #AEB9C6;
@@ -40,7 +40,7 @@ body {
   margin: 0;
   background:
     radial-gradient(ellipse at 76% 8%, rgba(127, 163, 196, 0.16), transparent 42%),
-    radial-gradient(ellipse at 14% 78%, rgba(232, 205, 161, 0.10), transparent 36%),
+    radial-gradient(ellipse at 14% 78%, rgba(0, 210, 255, 0.10), transparent 36%),
     var(--bg);
   color: var(--white);
   font-family: var(--font-body);
@@ -85,7 +85,7 @@ p {
 }
 
 h1 span, h2 span {
-  color: var(--gold);
+  color: var(--accent);
 }
 
 /* 4. Scroll progress */
@@ -96,7 +96,7 @@ h1 span, h2 span {
   z-index: 60;
   width: calc(var(--scroll-progress, 0) * 100%);
   height: 2px;
-  background: linear-gradient(90deg, var(--blue), var(--gold), var(--blue));
+  background: linear-gradient(90deg, var(--blue), var(--accent), var(--blue));
   box-shadow: 0 0 16px rgba(127, 163, 196, 0.32);
 }
 
@@ -111,7 +111,7 @@ h1 span, h2 span {
     linear-gradient(90deg, rgba(127, 163, 196, 0.08) 1px, transparent 1px),
     linear-gradient(0deg, rgba(127, 163, 196, 0.055) 1px, transparent 1px),
     radial-gradient(circle at 50% 16%, rgba(127, 163, 196, 0.16), transparent 34%),
-    radial-gradient(circle at 78% 72%, rgba(232, 205, 161, 0.08), transparent 30%),
+    radial-gradient(circle at 78% 72%, rgba(0, 210, 255, 0.08), transparent 30%),
     var(--bg);
   background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%, 100% 100%;
   opacity: 0.34;
@@ -130,7 +130,7 @@ h1 span, h2 span {
   gap: 10px;
   padding: 10px 20px;
   background:
-    linear-gradient(90deg, rgba(127, 163, 196, 0.06), transparent 28%, rgba(232, 205, 161, 0.04)),
+    linear-gradient(90deg, rgba(127, 163, 196, 0.06), transparent 28%, rgba(0, 210, 255, 0.04)),
     var(--bg);
   border-bottom: 1px solid var(--blue-line);
   color: rgba(241, 243, 245, 0.72);
@@ -138,7 +138,7 @@ h1 span, h2 span {
   text-align: center;
 }
 
-.top-strip span   { color: var(--gold); font-weight: 800; letter-spacing: 0; text-transform: uppercase; }
+.top-strip span   { color: var(--accent); font-weight: 800; letter-spacing: 0; text-transform: uppercase; }
 .top-strip strong { color: rgba(255, 255, 255, 0.9); }
 
 /* 8. Header */
@@ -205,16 +205,16 @@ h1 span, h2 span {
   border: 1px solid rgba(127, 163, 196, 0.30);
   border-radius: var(--r);
   color: var(--ink);
-  background: var(--gold);
+  background: var(--accent);
   font-weight: 700;
   font-size: 0.9rem;
   transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 
 .header-cta:hover {
-  background: var(--gold-lt);
+  background: var(--accent-soft);
   color: var(--ink);
-  box-shadow: 0 14px 30px rgba(232, 205, 161, 0.18);
+  box-shadow: 0 14px 30px rgba(0, 210, 255, 0.18);
 }
 
 /* 9. Focus styles */
@@ -224,7 +224,7 @@ h1 span, h2 span {
 .mobile-sticky-cta:focus-visible,
 .capture-form input:focus-visible,
 .capture-form select:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -283,14 +283,14 @@ h1 span, h2 span {
 .button.is-magnetic { transform: translateY(-1px); }
 
 .button-primary {
-  background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: var(--ink);
-  box-shadow: 0 14px 34px rgba(232, 205, 161, 0.18);
+  box-shadow: 0 14px 34px rgba(0, 210, 255, 0.18);
   font-weight: 800;
 }
 
 .button-primary:hover {
-  box-shadow: 0 18px 42px rgba(232, 205, 161, 0.24);
+  box-shadow: 0 18px 42px rgba(0, 210, 255, 0.24);
 }
 
 .button-secondary {
@@ -436,7 +436,7 @@ h1 span, h2 span {
   height: clamp(180px, 18vw, 220px);
   width: 3px;
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--blue), var(--gold), transparent);
+  background: linear-gradient(180deg, var(--blue), var(--accent), transparent);
   box-shadow: 0 0 24px rgba(127, 163, 196, 0.42);
 }
 
@@ -450,7 +450,7 @@ h1 span, h2 span {
 
 .hero h1 span {
   display: block;
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .hero .eyebrow {
@@ -540,7 +540,7 @@ h1 span, h2 span {
 
 .hero-trust span {
   min-height: 32px;
-  border-color: rgba(232, 205, 161, 0.18);
+  border-color: rgba(0, 210, 255, 0.18);
   color: rgba(241, 243, 245, 0.68);
   background: rgba(11, 22, 35, 0.34);
   font-size: 0.76rem;
@@ -620,7 +620,7 @@ h1 span, h2 span {
 
 .interface-panel span {
   display: block;
-  color: var(--gold);
+  color: var(--accent);
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -640,8 +640,8 @@ h1 span, h2 span {
   height: 4px;
   margin-top: 10px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--gold) 0 68%, rgba(232, 205, 161, 0.12) 68%);
-  box-shadow: 0 0 10px rgba(232, 205, 161, 0.26);
+  background: linear-gradient(90deg, var(--accent) 0 68%, rgba(0, 210, 255, 0.12) 68%);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.26);
 }
 
 .metric-card {
@@ -662,7 +662,7 @@ h1 span, h2 span {
 
 .metric-card span {
   display: block;
-  color: var(--gold);
+  color: var(--accent);
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -754,7 +754,7 @@ h1 span, h2 span {
 
 .growth-dashboard-header strong,
 .growth-curve-header strong {
-  color: var(--gold);
+  color: var(--accent);
   font-family: var(--font-heading);
 }
 
@@ -773,7 +773,7 @@ h1 span, h2 span {
 .mini-chart i {
   display: block;
   border-radius: 5px 5px 2px 2px;
-  background: linear-gradient(180deg, var(--gold), rgba(127, 163, 196, 0.5));
+  background: linear-gradient(180deg, var(--accent), rgba(127, 163, 196, 0.5));
   transform-origin: bottom;
   transform: scaleY(0.08);
   opacity: 0.44;
@@ -786,7 +786,7 @@ h1 span, h2 span {
 .growth-bars i {
   height: var(--bar);
   min-height: 18px;
-  box-shadow: 0 0 24px rgba(232, 205, 161, 0.14);
+  box-shadow: 0 0 24px rgba(0, 210, 255, 0.14);
 }
 
 .growth-animate.is-live .growth-bars i,
@@ -921,7 +921,7 @@ h1 span, h2 span {
   height: var(--bar);
   min-height: 10px;
   border-radius: 3px 3px 1px 1px;
-  background: linear-gradient(180deg, rgba(232, 205, 161, 0.88), rgba(127, 163, 196, 0.46));
+  background: linear-gradient(180deg, rgba(0, 210, 255, 0.88), rgba(127, 163, 196, 0.46));
 }
 
 /* 16. Stats band */
@@ -957,7 +957,7 @@ h1 span, h2 span {
   font-family: var(--font-heading);
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 800;
-  color: var(--gold);
+  color: var(--accent);
   line-height: 1;
 }
 
@@ -1036,7 +1036,7 @@ h1 span, h2 span {
   top: 28px;
   left: 34px;
   z-index: 1;
-  color: var(--gold-lt);
+  color: var(--accent-soft);
   font-family: var(--font-heading);
   font-size: 0.78rem;
   font-weight: 800;
@@ -1113,7 +1113,7 @@ h1 span, h2 span {
 
 .signal-index,
 .method-number {
-  color: var(--gold);
+  color: var(--accent);
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.88rem;
@@ -1290,10 +1290,10 @@ h1 span, h2 span {
   height: 44px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(232, 205, 161, 0.30);
+  border: 1px solid rgba(0, 210, 255, 0.30);
   border-radius: var(--r);
-  color: var(--gold);
-  background: rgba(232, 205, 161, 0.08);
+  color: var(--accent);
+  background: rgba(0, 210, 255, 0.08);
   font-family: var(--font-heading);
   font-weight: 800;
 }
@@ -1388,7 +1388,7 @@ h1 span, h2 span {
   height: 9px;
   border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 14px rgba(255, 208, 138, 0.46);
+  box-shadow: 0 0 14px rgba(0, 210, 255, 0.46);
   flex: 0 0 auto;
 }
 
@@ -1404,7 +1404,7 @@ h1 span, h2 span {
   background: rgba(34, 51, 74, 0.62);
 }
 
-.not-for strong { color: var(--gold); }
+.not-for strong { color: var(--accent); }
 .not-for span   { color: rgba(241, 243, 245, 0.76); }
 
 /* 24. Transformation */
@@ -1415,7 +1415,7 @@ h1 span, h2 span {
   border: 1px solid rgba(127, 163, 196, 0.20);
   border-radius: var(--r-lg);
   background:
-    radial-gradient(circle at 86% 12%, rgba(232, 205, 161, 0.18), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(0, 210, 255, 0.18), transparent 30%),
     linear-gradient(135deg, rgba(127, 163, 196, 0.12), transparent 42%),
     linear-gradient(180deg, rgba(17, 29, 44, 0.92), rgba(11, 22, 35, 0.92));
   box-shadow: 0 34px 110px rgba(11, 22, 35, 0.30), 0 0 90px rgba(127, 163, 196, 0.08);
@@ -1450,7 +1450,7 @@ h1 span, h2 span {
   height: 7px;
   border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 12px rgba(255, 208, 138, 0.44);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.44);
   flex: 0 0 auto;
 }
 
@@ -1534,18 +1534,18 @@ h1 span, h2 span {
 
 .growth-track-path {
   fill: none;
-  stroke: var(--gold);
+  stroke: var(--accent);
   stroke-width: 5;
   stroke-linecap: round;
   stroke-dasharray: 760;
   stroke-dashoffset: 760;
-  filter: drop-shadow(0 0 14px rgba(232, 205, 161, 0.28));
+  filter: drop-shadow(0 0 14px rgba(0, 210, 255, 0.28));
   transition: stroke-dashoffset 1200ms cubic-bezier(0.2, 0.9, 0.24, 1);
 }
 
 .growth-points circle {
   fill: var(--bg);
-  stroke: var(--gold);
+  stroke: var(--accent);
   stroke-width: 4;
   opacity: 0;
   transform-box: fill-box;
@@ -1568,8 +1568,8 @@ h1 span, h2 span {
 }
 
 @keyframes growthPointPulse {
-  0%, 100% { filter: drop-shadow(0 0 0 rgba(232, 205, 161, 0)); }
-  50%       { filter: drop-shadow(0 0 10px rgba(232, 205, 161, 0.6)); }
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(0, 210, 255, 0)); }
+  50%       { filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.6)); }
 }
 
 /* 25. Authority */
@@ -1650,7 +1650,7 @@ h1 span, h2 span {
   height: 40px;
   border: 1px solid rgba(127, 163, 196, 0.26);
   border-radius: var(--r);
-  color: var(--gold);
+  color: var(--accent);
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.78rem;
@@ -1684,14 +1684,14 @@ h1 span, h2 span {
 
 .offer-panel {
   padding: 24px;
-  border: 1px solid rgba(232, 205, 161, 0.22);
+  border: 1px solid rgba(0, 210, 255, 0.22);
   border-radius: var(--r);
   background: rgba(11, 22, 35, 0.56);
 }
 
 .offer-panel > span {
   display: block;
-  color: var(--gold);
+  color: var(--accent);
   font-weight: 800;
   font-size: 0.82rem;
   text-transform: uppercase;
@@ -1827,7 +1827,7 @@ h1 span, h2 span {
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: var(--gold-lt);
+  color: var(--accent-soft);
   box-shadow: none;
 }
 
@@ -1939,7 +1939,7 @@ h1 span, h2 span {
   border: 1px solid rgba(127, 163, 196, 0.16);
   border-radius: var(--r-lg);
   background:
-    radial-gradient(circle at 88% 10%, rgba(232, 205, 161, 0.12), transparent 30%),
+    radial-gradient(circle at 88% 10%, rgba(0, 210, 255, 0.12), transparent 30%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 58%),
     var(--card);
   box-shadow:
@@ -2028,14 +2028,14 @@ h1 span, h2 span {
 
 .form-status.is-error {
   border: 1px solid rgba(255, 94, 67, 0.30);
-  color: rgba(255, 213, 204, 0.92);
+  color: rgba(220, 247, 255, 0.92);
   background: rgba(255, 94, 67, 0.08);
 }
 
 .form-status.is-success {
-  border: 1px solid rgba(255, 208, 138, 0.28);
-  color: rgba(255, 238, 210, 0.94);
-  background: rgba(232, 205, 161, 0.08);
+  border: 1px solid rgba(0, 210, 255, 0.28);
+  color: rgba(220, 247, 255, 0.94);
+  background: rgba(0, 210, 255, 0.08);
 }
 
 .checkout-section {
@@ -2187,15 +2187,15 @@ h1 span, h2 span {
   background: rgba(127, 163, 196, 0.1);
   color: #fff;
 }
-.cf-pill-gold {
-  background: var(--gold);
-  border-color: var(--gold);
+.cf-pill-accent {
+  background: var(--accent);
+  border-color: var(--accent);
   color: #0B1623;
   font-weight: 700;
 }
-.cf-pill-gold:hover {
-  background: var(--gold-lt);
-  border-color: var(--gold-lt);
+.cf-pill-accent:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
   color: #0B1623;
 }
 
@@ -2376,13 +2376,13 @@ h1 span, h2 span {
     display: grid;
     place-items: center;
     border-radius: var(--r);
-    background: var(--gold);
+    background: var(--accent);
     color: #0B1623;
     font-weight: 800;
     font-size: 0.96rem;
     box-shadow:
       0 16px 56px rgba(11, 22, 35, 0.36),
-      0 0 36px rgba(232, 205, 161, 0.16);
+      0 0 36px rgba(0, 210, 255, 0.16);
   }
 
   .stats-inner {

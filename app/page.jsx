@@ -588,7 +588,7 @@ export default function Home() {
             <a href="#metodo" className="cf-pill">Metodo</a>
             <a href="#conteudo" className="cf-pill">Conteudo</a>
             <a href="#faq" className="cf-pill">FAQ</a>
-            <a href="#formulario" className="cf-pill cf-pill-gold">Liberar inscricao</a>
+            <a href="#formulario" className="cf-pill cf-pill-accent">Liberar inscricao</a>
           </nav>
         </div>
 
