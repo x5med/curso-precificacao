@@ -123,6 +123,7 @@ document.querySelectorAll(".interactive-video-frame").forEach((frame) => {
   if (!video) return
 
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  video.pause()
 
   function playVideo() {
     if (reduceMotion) return

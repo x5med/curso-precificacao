@@ -117,7 +117,7 @@ export default function Home() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
                 aria-label="Dr. Fabio em ambiente premium apresentando a X5 Med"
               >
                 <source src="/assets/video-hero-dr-fabio.mp4" type="video/mp4" />

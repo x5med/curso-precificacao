@@ -615,12 +615,11 @@ h1 span, h2 span {
 
 .hero-video {
   background: var(--bg);
-  opacity: 0;
+  opacity: 1;
   transition: opacity 220ms ease, filter 220ms ease;
 }
 
 .interactive-video-frame.is-video-playing .hero-video {
-  opacity: 1;
   filter: saturate(1.12) contrast(1.1) brightness(1.12);
 }
 
