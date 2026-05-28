@@ -123,7 +123,9 @@ document.querySelectorAll(".interactive-video-frame").forEach((frame) => {
   if (!video) return
 
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  const hoverTarget = frame.closest(".hero") || frame
   video.pause()
+  video.currentTime = 0
 
   function playVideo() {
     if (reduceMotion) return
@@ -140,10 +142,10 @@ document.querySelectorAll(".interactive-video-frame").forEach((frame) => {
   }
 
   if (canHover) {
-    frame.addEventListener("pointerenter", playVideo)
-    frame.addEventListener("pointerleave", pauseVideo)
-    frame.addEventListener("focusin", playVideo)
-    frame.addEventListener("focusout", pauseVideo)
+    hoverTarget.addEventListener("pointerenter", playVideo)
+    hoverTarget.addEventListener("pointerleave", pauseVideo)
+    hoverTarget.addEventListener("focusin", playVideo)
+    hoverTarget.addEventListener("focusout", pauseVideo)
   } else {
     frame.addEventListener("click", () => {
       if (video.paused) {
@@ -206,7 +208,7 @@ document.querySelectorAll(".capture-form").forEach((form) => {
         return
       }
 
-      setStatus("O envio ainda precisa de um endpoint ou CRM configurado. Os campos foram validados, mas os dados nao foram enviados.", "error")
+      setStatus("O envio ainda precisa de um endpoint ou CRM configurado. Os campos foram validados, mas os dados não foram enviados.", "error")
       return
     }
 
@@ -228,7 +230,7 @@ document.querySelectorAll(".capture-form").forEach((form) => {
       unlockCheckout()
       setStatus("Recebemos seus dados. Continue para finalizar sua inscrição.", "success")
     } catch (error) {
-      setStatus("Nao foi possivel enviar agora. Tente novamente em instantes.", "error")
+      setStatus("Não foi possível enviar agora. Tente novamente em instantes.", "error")
     } finally {
       if (submitButton) {
         submitButton.disabled = false

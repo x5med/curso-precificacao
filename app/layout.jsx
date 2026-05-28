@@ -1,13 +1,13 @@
 import "./globals.css"
 
 export const metadata = {
-  title: "Curso de Precificacao Medica | Dr. Fabio Rodrigues",
+  title: "Curso de Precificação Médica | Dr. Fábio Rodrigues",
   description:
-    "Aprenda a precificar consultas medicas com metodo, proteger margem e comunicar valor com mais seguranca na medicina particular.",
+    "Aprenda a precificar consultas médicas com método, proteger margem e comunicar valor com mais segurança na medicina particular.",
   openGraph: {
-    title: "Curso de Precificacao Medica | Dr. Fabio Rodrigues",
+    title: "Curso de Precificação Médica | Dr. Fábio Rodrigues",
     description:
-      "Uma formacao pratica da X5 Med para medicos que querem parar de cobrar no escuro e tomar decisoes de preco com mais clareza.",
+      "Uma formação prática da X5 Med para médicos que querem parar de cobrar no escuro e tomar decisões de preço com mais clareza.",
     type: "website",
   },
 }
