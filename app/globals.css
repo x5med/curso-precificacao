@@ -603,14 +603,18 @@ h1 span, h2 span {
 .hero-frame > img,
 .hero-video {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: auto;
-  object-fit: cover;
-  object-position: 72% 38%;
+  top: 50%;
+  right: clamp(24px, 4vw, 72px);
+  left: auto;
+  bottom: auto;
+  width: min(58vw, 1120px);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  object-position: center;
   display: block;
-  filter: saturate(1.08) contrast(1.1) brightness(1.08);
+  filter: saturate(1.06) contrast(1.08) brightness(1.02);
+  transform: translateY(-50%);
 }
 
 .hero-video {
@@ -621,7 +625,7 @@ h1 span, h2 span {
 }
 
 .interactive-video-frame.is-video-playing .hero-video {
-  filter: saturate(1.12) contrast(1.1) brightness(1.12);
+  filter: saturate(1.1) contrast(1.08) brightness(1.06);
 }
 
 .hero-frame::before {
@@ -2523,7 +2527,12 @@ h1 span, h2 span {
   .hero-copy::before { height: 170px; }
   .hero h1 { font-size: 3.35rem; }
   .hero-frame > img,
-  .hero-video { object-position: 62% 34%; }
+  .hero-video {
+    top: 46%;
+    right: -10vw;
+    width: min(82vw, 860px);
+    object-position: center;
+  }
 
   .signal-grid,
   .proof-grid,
@@ -2591,8 +2600,11 @@ h1 span, h2 span {
   }
   .hero-frame > img,
   .hero-video {
-    object-position: 68% 34%;
-    filter: saturate(1.02) contrast(1.08) brightness(0.94);
+    top: 44%;
+    right: -42vw;
+    width: 132vw;
+    object-position: center;
+    filter: saturate(1.02) contrast(1.08) brightness(0.78);
   }
 
   .metric-card     { display: none; }
