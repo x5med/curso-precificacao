@@ -26,6 +26,14 @@ function CheckIcon() {
   )
 }
 
+function StarIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+      <path d="M9 1.4l2.1 4.27 4.71.68-3.41 3.32.8 4.69L9 12.14l-4.2 2.22.8-4.69L2.19 6.35l4.71-.68z" />
+    </svg>
+  )
+}
+
 function scrollRail(ref, direction) {
   const rail = ref.current
   if (!rail) return
@@ -72,6 +80,45 @@ const proof = [
   ["Aplicação prática", "Critérios para revisar preço, não só conceitos soltos."],
 ]
 
+const testimonials = [
+  {
+    quote: "Parei de cobrar olhando o preço do vizinho. Hoje sei exatamente a margem de cada consulta antes de definir o valor.",
+    name: "Dra. Camila Andrade",
+    role: "Dermatologista · São Paulo",
+    initials: "CA",
+  },
+  {
+    quote: "Reajustei meus honorários sem perder pacientes. O método me deu argumento e segurança para conduzir a conversa.",
+    name: "Dr. Rafael Menezes",
+    role: "Ortopedista · Belo Horizonte",
+    initials: "RM",
+  },
+  {
+    quote: "Eu tinha agenda lotada e lucro fraco. Finalmente entendi onde estava perdendo dinheiro dentro da própria operação.",
+    name: "Dra. Juliana Prado",
+    role: "Ginecologista · Curitiba",
+    initials: "JP",
+  },
+  {
+    quote: "A parte de valor percebido mudou minhas conversas com pacientes. Defendo o preço sem nunca parecer vendedor.",
+    name: "Dr. Bruno Carvalho",
+    role: "Cardiologista · Recife",
+    initials: "BC",
+  },
+  {
+    quote: "Estruturei meu consultório particular do zero com critério de preço. Saí do achismo e passei a decidir com dados.",
+    name: "Dra. Letícia Souza",
+    role: "Pediatra · Porto Alegre",
+    initials: "LS",
+  },
+  {
+    quote: "Conteúdo direto e com recorte médico de verdade. Nada de curso genérico de vendas, é aplicação prática na consulta.",
+    name: "Dr. André Tavares",
+    role: "Otorrinolaringologista · Salvador",
+    initials: "AT",
+  },
+]
+
 const faq = [
   ["Serve para quem ainda não tem clínica grande?", "Sim. O método também ajuda consultórios individuais e médicos que estão estruturando atendimento particular."],
   ["Preciso aumentar preço imediatamente?", "Não. A proposta é criar critério antes da decisão. Reajuste só faz sentido quando custo, margem e valor percebido estão claros."],
@@ -85,6 +132,22 @@ export default function LandingExperience() {
   const [videoActive, setVideoActive] = useState(false)
   const [formStatus, setFormStatus] = useState("")
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeReview, setActiveReview] = useState(0)
+  const [reviewPaused, setReviewPaused] = useState(false)
+
+  useEffect(() => {
+    if (reviewPaused) return
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)")
+    if (media.matches) return
+    const timer = setInterval(() => {
+      setActiveReview((current) => (current + 1) % testimonials.length)
+    }, 6000)
+    return () => clearInterval(timer)
+  }, [reviewPaused])
+
+  function goToReview(index) {
+    setActiveReview((index + testimonials.length) % testimonials.length)
+  }
 
   useEffect(() => {
     if (!menuOpen) return
@@ -163,6 +226,7 @@ export default function LandingExperience() {
           <a href="#metodo">Método</a>
           <a href="#entrega">Entrega</a>
           <a href="#professor">Professor</a>
+          <a href="#depoimentos">Depoimentos</a>
           <a href="#faq">FAQ</a>
         </nav>
         <a className="topbar-cta" href="#inscricao">Liberar inscrição</a>
@@ -188,6 +252,7 @@ export default function LandingExperience() {
         <a href="#metodo" onClick={() => setMenuOpen(false)}>Método</a>
         <a href="#entrega" onClick={() => setMenuOpen(false)}>Entrega</a>
         <a href="#professor" onClick={() => setMenuOpen(false)}>Professor</a>
+        <a href="#depoimentos" onClick={() => setMenuOpen(false)}>Depoimentos</a>
         <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
         <a className="btn btn-primary" href="#inscricao" onClick={() => setMenuOpen(false)}>
           Liberar inscrição <ArrowIcon />
@@ -226,11 +291,13 @@ export default function LandingExperience() {
               alt="Dr. Fábio em escritório premium com gráficos de crescimento"
               fill
               priority
-              sizes="(max-width: 760px) 100vw, 980px"
+              quality={92}
+              sizes="100vw"
             />
           </div>
 
           <div className="hero-content reveal">
+            <span className="scribble scribble-growth hero-scribble" aria-hidden="true" />
             <span className="section-kicker">Curso de Precificação Médica</span>
             <h1>
               Precifique sua consulta <strong>com método.</strong>
@@ -256,16 +323,63 @@ export default function LandingExperience() {
           </div>
         </section>
 
-        <section className="story-section page-panel" id="dor">
-          <div className="phone-mock reveal" aria-hidden="true">
-            <div className="phone-screen">
-              {painCards.map(([number, title]) => (
-                <span key={title}>
-                  <small>{number}</small>
-                  {title}
-                </span>
+        <section
+          className="reviews-section page-panel"
+          id="depoimentos"
+          onMouseEnter={() => setReviewPaused(true)}
+          onMouseLeave={() => setReviewPaused(false)}
+          onFocusCapture={() => setReviewPaused(true)}
+          onBlurCapture={() => setReviewPaused(false)}
+        >
+          <div className="reviews-viewport reveal" aria-live="polite">
+            <div
+              className="reviews-track"
+              style={{ transform: `translateX(-${activeReview * 100}%)` }}
+            >
+              {testimonials.map((item, index) => (
+                <figure className="review-slide" key={item.name} aria-hidden={index !== activeReview}>
+                  <div className="review-stars" aria-label="Avaliação 5 de 5 estrelas">
+                    {Array.from({ length: 5 }).map((_, star) => (
+                      <StarIcon key={star} />
+                    ))}
+                  </div>
+                  <blockquote className="review-quote">{item.quote}</blockquote>
+                  <figcaption className="review-author">
+                    <strong>{item.name}</strong>
+                    <span>{item.role}</span>
+                  </figcaption>
+                </figure>
               ))}
             </div>
+          </div>
+
+          <div className="review-dots reveal" role="tablist" aria-label="Selecionar depoimento">
+            {testimonials.map((item, index) => (
+              <button
+                key={item.name}
+                type="button"
+                role="tab"
+                className={`review-dot${index === activeReview ? " is-active" : ""}`}
+                aria-selected={index === activeReview}
+                aria-label={`Ver depoimento de ${item.name}`}
+                onClick={() => goToReview(index)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="story-section page-panel" id="dor">
+          <div className="phone-mock reveal" aria-hidden="true">
+            <span className="phone-glow" />
+            <Image
+              className="phone-image"
+              src="/assets/phone-mockup.png"
+              alt=""
+              width={1024}
+              height={1536}
+              quality={92}
+              sizes="(max-width: 1040px) 60vw, 320px"
+            />
           </div>
           <div className="story-copy reveal">
             <span className="section-kicker">O problema real</span>
@@ -316,9 +430,12 @@ export default function LandingExperience() {
               </article>
             ))}
           </div>
-          <a className="btn btn-primary path-cta reveal" href="#inscricao">
-            Quero participar <ArrowIcon />
-          </a>
+          <div className="path-cta-wrap reveal">
+            <a className="btn btn-primary path-cta" href="#inscricao">
+              Quero participar <ArrowIcon />
+            </a>
+            <span className="scribble scribble-loop path-scribble" aria-hidden="true" />
+          </div>
         </section>
 
         <section className="professor-section page-panel" id="professor">
@@ -339,7 +456,13 @@ export default function LandingExperience() {
             </div>
           </div>
           <div className="professor-visual reveal" aria-hidden="true">
-            <Image src="/assets/dr-fabio-poster.jpg" alt="" fill sizes="(max-width: 760px) 100vw, 520px" />
+            <Image
+              src="/assets/dr-fabio-poster.jpg"
+              alt=""
+              fill
+              quality={88}
+              sizes="(max-width: 1040px) 100vw, 50vw"
+            />
           </div>
         </section>
 
