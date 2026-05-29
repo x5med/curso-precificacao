@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "dev:webpack": "next dev --webpack",
     "dev:static": "node server.js",
     "build": "next build",
