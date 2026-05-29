@@ -55,7 +55,6 @@ const modules = [
   ["Módulo 2", "Margem médica", "Entenda faturamento, lucro, custo operacional e sustentabilidade da agenda."],
   ["Módulo 3", "Reajuste com critério", "Defina quando, quanto e como revisar preço com menos insegurança."],
   ["Módulo 4", "Valor percebido", "Ajuste discurso, experiência e posicionamento para reduzir comparação por preço."],
-  ["Material", "Checklist X5", "Use um roteiro prático para revisar suas decisões de precificação."],
 ]
 
 const outcomes = [
@@ -68,9 +67,9 @@ const outcomes = [
 ]
 
 const proof = [
-  ["Recorte médico", "A formação fala de consulta, honorários, margem e medicina particular. Não é um curso genérico de vendas."],
-  ["Comunicação ética", "O foco é clareza empresarial sem promessa de faturamento e sem pressão comercial."],
-  ["Aplicação prática", "Você sai com critérios para revisar preço, não só com conceitos soltos."],
+  ["Recorte médico", "Consulta, honorários, margem e medicina particular. Nada de curso genérico de vendas."],
+  ["Comunicação ética", "Clareza empresarial sem promessa de faturamento e sem pressão comercial."],
+  ["Aplicação prática", "Critérios para revisar preço, não só conceitos soltos."],
 ]
 
 const faq = [
@@ -82,7 +81,6 @@ const faq = [
 
 export default function LandingExperience() {
   const painRailRef = useRef(null)
-  const moduleRailRef = useRef(null)
   const videoRef = useRef(null)
   const [videoActive, setVideoActive] = useState(false)
   const [formStatus, setFormStatus] = useState("")
@@ -97,7 +95,7 @@ export default function LandingExperience() {
           observer.unobserve(entry.target)
         })
       },
-      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
     )
 
     items.forEach((item) => observer.observe(item))
@@ -157,67 +155,85 @@ export default function LandingExperience() {
         <a className="topbar-cta" href="#inscricao">Liberar inscrição</a>
       </header>
 
-      <main id="top">
-        <section className="hero-section">
-          <div className="hero-copy reveal">
+      <main id="top" className="sales-page">
+        <section className="hero-section page-panel">
+          <div
+            className={`media-stage hero-backdrop ${videoActive ? "is-playing" : ""}`}
+            onPointerEnter={playHeroVideo}
+            onPointerLeave={stopHeroVideo}
+            onClick={toggleHeroVideo}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") toggleHeroVideo()
+            }}
+            aria-label="Reproduzir vídeo da hero"
+          >
+            <video ref={videoRef} className="hero-video" muted playsInline preload="none">
+              <source src="/assets/dr-fabio.webm" type="video/webm" />
+              <source src="/assets/dr-fabio.mp4" type="video/mp4" />
+            </video>
+            <Image
+              className="hero-still"
+              src="/assets/hero-x5med.png"
+              alt="Dr. Fábio em escritório premium com gráficos de crescimento"
+              fill
+              priority
+              sizes="(max-width: 760px) 100vw, 980px"
+            />
+          </div>
+
+          <div className="hero-content reveal">
             <span className="section-kicker">Curso de Precificação Médica</span>
             <h1>
-              Pare de definir o valor da sua consulta <strong>no escuro.</strong>
+              Precifique sua consulta <strong>com método.</strong>
             </h1>
             <p className="hero-lead">
-              Transforme custo, margem e posicionamento em uma decisão de preço mais clara, segura e sustentável.
-            </p>
-            <p className="hero-note">
-              Uma formação da X5 Med para médicos que querem parar de cobrar por insegurança, comparação ou improviso.
+              Pare de cobrar por comparação e transforme custo, margem e posicionamento em uma decisão clara.
             </p>
             <div className="hero-actions">
               <a className="btn btn-primary" href="#inscricao">
-                Preencher formulário <ArrowIcon />
+                Quero participar <ArrowIcon />
               </a>
               <a className="btn btn-secondary" href="#metodo">Ver método</a>
             </div>
-            <div className="trust-row" aria-label="Compromissos">
-              <span>Sem promessa de faturamento</span>
-              <span>Sem venda agressiva</span>
-              <span>Aplicado à medicina particular</span>
+            <div className="hero-badges" aria-label="Pilares da precificação médica">
+              {["Custo real", "Margem", "Valor percebido"].map((item) => (
+                <span key={item}>
+                  <CheckIcon />
+                  {item}
+                </span>
+              ))}
             </div>
-          </div>
-
-          <div className="hero-media reveal" aria-label="Imagem e vídeo do Dr. Fábio">
-            <div
-              className={`media-stage ${videoActive ? "is-playing" : ""}`}
-              onPointerEnter={playHeroVideo}
-              onPointerLeave={stopHeroVideo}
-              onClick={toggleHeroVideo}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") toggleHeroVideo()
-              }}
-              aria-label="Reproduzir vídeo da hero"
-            >
-              <video ref={videoRef} className="hero-video" muted playsInline preload="none">
-                <source src="/assets/dr-fabio.webm" type="video/webm" />
-                <source src="/assets/dr-fabio.mp4" type="video/mp4" />
-              </video>
-              <Image
-                className="hero-still"
-                src="/assets/hero-x5med.png"
-                alt="Dr. Fábio em escritório premium com gráficos de crescimento"
-                fill
-                priority
-                sizes="(max-width: 760px) 100vw, 58vw"
-              />
-              <div className="media-hint">Passe o mouse para ver em movimento</div>
-            </div>
+            <p className="hero-slot">Turma online. Aplicação prática para medicina particular.</p>
           </div>
         </section>
 
-        <section className="pain-strip" id="dor">
+        <section className="story-section page-panel" id="dor">
+          <div className="phone-mock reveal" aria-hidden="true">
+            <div className="phone-screen">
+              {painCards.slice(0, 4).map(([number, title]) => (
+                <span key={title}>
+                  <small>{number}</small>
+                  {title}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="story-copy reveal">
+            <span className="section-kicker">O problema real</span>
+            <h2>Agenda cheia não prova que sua clínica está saudável.</h2>
+            <p>
+              Atender mais pode esconder margem fraca. A proposta é parar de comparar preço e começar a ler a operação
+              com critério.
+            </p>
+          </div>
+        </section>
+
+        <section className="pain-strip page-panel">
           <div className="section-head reveal">
-            <span className="section-kicker">O que trava a clínica</span>
-            <h2>O problema quase nunca é só o preço.</h2>
-            <p>É a falta de critério visível por trás dele.</p>
+            <span className="section-kicker">Sinais de alerta</span>
+            <h2>Onde a precificação costuma quebrar.</h2>
           </div>
           <div className="rail-controls reveal">
             <button className="icon-btn" type="button" onClick={() => scrollRail(painRailRef, -1)} aria-label="Card anterior">
@@ -238,72 +254,54 @@ export default function LandingExperience() {
           </div>
         </section>
 
-        <section className="dark-band">
-          <div className="band-grid">
-            <div className="section-head align-left reveal">
-              <span className="section-kicker">Mudança de leitura</span>
-              <h2>Preço deixa de ser desconforto e vira decisão empresarial.</h2>
-            </div>
-            <div className="formula-card reveal">
-              {methodSteps.map(([title, text]) => (
+        <section className="path-section page-panel" id="metodo">
+          <div className="section-head reveal">
+            <span className="section-kicker">O que você recebe</span>
+            <h2>Uma trilha direta para sair do improviso.</h2>
+          </div>
+          <div className="path-line" aria-hidden="true" />
+          <div className="path-cards">
+            {modules.map(([label, title, text], index) => (
+              <article className="path-card reveal" key={title}>
+                <span>{label}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <i>{String(index + 1).padStart(2, "0")}</i>
+              </article>
+            ))}
+          </div>
+          <a className="btn btn-primary path-cta reveal" href="#inscricao">
+            Quero participar <ArrowIcon />
+          </a>
+        </section>
+
+        <section className="professor-section page-panel" id="professor">
+          <div className="professor-copy reveal">
+            <span className="section-kicker">Professor</span>
+            <h2>Dr. Fábio Rodrigues</h2>
+            <p>
+              A aula parte da realidade de médicos que precisam tomar decisões de preço sem transformar a relação com o
+              paciente em uma negociação desconfortável.
+            </p>
+            <div className="proof-grid">
+              {proof.map(([title, text]) => (
                 <article key={title}>
-                  <CheckIcon />
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{text}</p>
-                  </div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
                 </article>
               ))}
             </div>
           </div>
-        </section>
-
-        <section className="method-section" id="metodo">
-          <div className="section-head reveal">
-            <span className="section-kicker">Método X5</span>
-            <h2>Um caminho simples para sair do improviso.</h2>
-            <p>Diagnóstico, margem, valor percebido e reajuste conectados em uma sequência prática.</p>
-          </div>
-          <div className="method-grid">
-            {methodSteps.map(([title, text], index) => (
-              <article className="method-card reveal" key={title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
+          <div className="professor-visual reveal" aria-hidden="true">
+            <Image src="/assets/hero-x5med.png" alt="" fill sizes="(max-width: 760px) 100vw, 520px" />
           </div>
         </section>
 
-        <section className="white-section" id="entrega">
-          <div className="section-head reveal">
-            <span className="section-kicker">O que você recebe</span>
-            <h2>Conteúdo direto para decisão de preço.</h2>
-            <p>Sem excesso de teoria. A lógica é aplicar na consulta, na agenda e na comunicação da clínica.</p>
-          </div>
-          <div className="rail-controls reveal">
-            <button className="icon-btn" type="button" onClick={() => scrollRail(moduleRailRef, -1)} aria-label="Módulo anterior">
-              <ArrowIcon direction="left" />
-            </button>
-            <button className="icon-btn" type="button" onClick={() => scrollRail(moduleRailRef, 1)} aria-label="Próximo módulo">
-              <ArrowIcon />
-            </button>
-          </div>
-          <div className="card-rail module-rail" ref={moduleRailRef}>
-            {modules.map(([label, title, text]) => (
-              <article className="module-card reveal" key={title}>
-                <span>{label}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="outcome-section">
+        <section className="outcome-section page-panel" id="entrega">
           <div className="section-head align-left reveal">
             <span className="section-kicker">Resultado esperado</span>
-            <h2>Mais clareza antes de cobrar, reajustar ou explicar seu valor.</h2>
+            <h2>Um passo para mudar sua forma de decidir preço.</h2>
+            <p>Clareza antes de cobrar, reajustar ou explicar o valor da sua consulta.</p>
           </div>
           <div className="outcome-list">
             {outcomes.map((item) => (
@@ -315,30 +313,9 @@ export default function LandingExperience() {
           </div>
         </section>
 
-        <section className="professor-section" id="professor">
-          <div className="professor-card reveal">
-            <div>
-              <span className="section-kicker">Professor</span>
-              <h2>Dr. Fábio Rodrigues</h2>
-              <p>
-                A aula parte da realidade de médicos que precisam tomar decisões de preço sem transformar a relação
-                com o paciente em uma negociação desconfortável.
-              </p>
-            </div>
-            <div className="proof-grid">
-              {proof.map(([title, text]) => (
-                <article key={title}>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="signup-section" id="inscricao">
+        <section className="signup-section page-panel" id="inscricao">
           <div className="signup-copy reveal">
-            <span className="section-kicker">Inscrição</span>
+            <span className="section-kicker">Aplicação</span>
             <h2>Libere o próximo passo.</h2>
             <p>Preencha seus dados para receber o acesso à etapa de inscrição do curso de Precificação Médica.</p>
           </div>
@@ -362,7 +339,7 @@ export default function LandingExperience() {
           </form>
         </section>
 
-        <section className="faq-section" id="faq">
+        <section className="faq-section page-panel" id="faq">
           <div className="section-head reveal">
             <span className="section-kicker">FAQ</span>
             <h2>Perguntas importantes antes de entrar.</h2>
