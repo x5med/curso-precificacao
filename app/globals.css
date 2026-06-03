@@ -12,6 +12,15 @@
   --line: rgba(112, 232, 255, 0.18);
   --surface: rgba(5, 17, 32, 0.78);
   --surface-strong: rgba(8, 26, 45, 0.92);
+  --fold-base: #020812;
+  --fold-panel: #081722;
+  --fold-base-bg:
+    radial-gradient(circle at 10% 8%, rgba(0, 210, 255, 0.15), transparent 38rem),
+    linear-gradient(135deg, rgba(2, 8, 18, 0.98) 0%, rgba(6, 22, 34, 0.94) 52%, rgba(2, 8, 18, 0.98) 100%);
+  --fold-panel-bg:
+    radial-gradient(circle at 12% 12%, rgba(0, 210, 255, 0.13), transparent 40rem),
+    radial-gradient(circle at 78% 38%, rgba(255, 255, 255, 0.04), transparent 34rem),
+    linear-gradient(135deg, rgba(8, 23, 34, 0.98) 0%, rgba(16, 28, 41, 0.95) 50%, rgba(2, 8, 18, 0.98) 100%);
   --shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
   --radius-sm: 10px;
   --radius: 16px;
@@ -339,7 +348,7 @@ main {
 .hero-media {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: 0;
   overflow: hidden;
   background: #020812;
   will-change: transform;
@@ -426,6 +435,8 @@ main {
 }
 
 .hero-grid {
+  position: relative;
+  z-index: 2;
   width: min(100%, var(--max));
   display: grid;
   gap: 34px;
@@ -576,17 +587,45 @@ main {
 .logistics-section,
 .signup-section,
 .faq-section {
-  padding: clamp(68px, 12vw, 126px) var(--pad);
+  padding: clamp(48px, 7vw, 86px) var(--pad);
+}
+
+.faq-section {
+  padding-block: clamp(46px, 6vw, 72px);
+}
+
+.faq-section .section-head {
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.faq-section .section-head h2 {
+  font-size: clamp(2rem, 5.4vw, 3.25rem);
 }
 
 .diagnosis-grid,
-.simulator-grid,
-.professor-section,
-.signup-section {
+.simulator-grid {
   width: min(100%, var(--max));
   display: grid;
   gap: 24px;
   margin: 0 auto;
+}
+
+.professor-section,
+.signup-section {
+  display: grid;
+  gap: 24px;
+}
+
+.professor-media,
+.professor-copy,
+.signup-copy {
+  width: min(100%, var(--max));
+  margin: 0 auto;
+}
+
+.signup-copy {
+  max-width: 760px;
 }
 
 .diagnosis-list {
@@ -1804,31 +1843,79 @@ main {
 }
 
 /* --- Transicao em onda entre dobras --- */
-main > section,
+main > section[data-surface],
 .site-footer {
   position: relative;
+  isolation: isolate;
+  overflow: clip;
 }
 
 main > section[data-surface="base"],
 .site-footer[data-surface="base"] {
-  background: rgba(2, 8, 18, 0.5);
+  background: var(--fold-base-bg);
 }
 
 main > section[data-surface="panel"] {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--fold-panel-bg);
+}
+
+main > section[data-surface]::before,
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(112, 232, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(112, 232, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.55;
+  mask-image: linear-gradient(to bottom, transparent 0, black 12%, black 88%, transparent 100%);
+}
+
+main > section[data-surface]::after,
+.site-footer[data-surface]::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  height: 1px;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 1px;
+}
+
+main > section[data-surface="base"]::before,
+.site-footer[data-surface="base"]::before {
+  opacity: 0.5;
+}
+
+main > section[data-surface="base"]::after,
+.site-footer[data-surface="base"]::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='1600' height='1' viewBox='0 0 1600 1' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='line' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop stop-color='%23f6c76c' stop-opacity='0'/%3E%3Cstop offset='.18' stop-color='%23f6c76c' stop-opacity='.18'/%3E%3Cstop offset='.5' stop-color='%23f6c76c' stop-opacity='.48'/%3E%3Cstop offset='.82' stop-color='%23f6c76c' stop-opacity='.18'/%3E%3Cstop offset='1' stop-color='%23f6c76c' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 .5H1600' stroke='url(%23line)'/%3E%3C/svg%3E");
+  box-shadow: 0 0 18px rgba(246, 199, 108, 0.08);
 }
 
 .wave-ribbon + section[data-surface="panel"] {
-  background:
-    linear-gradient(180deg, rgba(2, 8, 18, 0) 0%, rgba(255, 255, 255, 0.012) 120px, rgba(255, 255, 255, 0.03) 260px),
-    rgba(255, 255, 255, 0.03);
+  background: var(--fold-panel-bg);
+}
+
+main > section[data-surface="panel"]::before {
+  opacity: 0.42;
+}
+
+main > section[data-surface="panel"]::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='1600' height='1' viewBox='0 0 1600 1' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='line' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop stop-color='%2370e8ff' stop-opacity='0'/%3E%3Cstop offset='.18' stop-color='%2370e8ff' stop-opacity='.16'/%3E%3Cstop offset='.5' stop-color='%2370e8ff' stop-opacity='.48'/%3E%3Cstop offset='.82' stop-color='%2370e8ff' stop-opacity='.16'/%3E%3Cstop offset='1' stop-color='%2370e8ff' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 .5H1600' stroke='url(%23line)'/%3E%3C/svg%3E");
+  box-shadow: 0 0 18px rgba(112, 232, 255, 0.08);
 }
 
 .section-wave {
   position: absolute;
   left: 0;
   right: 0;
-  top: -55px;
+  top: -56px;
   width: 100%;
   height: 56px;
   display: block;
@@ -1837,6 +1924,7 @@ main > section[data-surface="panel"] {
 }
 
 .section-wave .wave-fill {
+  fill: var(--fold-base);
   stroke: none;
 }
 
@@ -1849,11 +1937,11 @@ main > section[data-surface="panel"] {
 }
 
 .section-divider-white {
-  --divider-h: clamp(210px, 15vw, 280px);
+  --divider-h: clamp(132px, 9vw, 178px);
   position: absolute;
   left: 50%;
   top: calc(var(--divider-h) * -0.419);
-  width: min(166vw, calc(var(--max) + 760px));
+  width: min(118vw, calc(var(--max) + 260px));
   height: var(--divider-h);
   transform: translateX(-50%);
   display: block;
@@ -1863,6 +1951,16 @@ main > section[data-surface="panel"] {
   opacity: 0.94;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.22));
   animation: divider-glow 3.6s ease-in-out infinite;
+}
+
+.section-divider-white {
+  display: block;
+}
+
+main > section[data-surface] > :not(.section-wave):not(.section-divider-white),
+.site-footer > :not(.section-wave):not(.section-divider-white) {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes divider-glow {
@@ -1878,15 +1976,15 @@ main > section[data-surface="panel"] {
 }
 
 [data-surface="base"] > .section-wave .wave-fill {
-  fill: rgba(2, 8, 18, 0.6);
+  fill: var(--fold-base);
 }
 
 [data-surface="panel"] > .section-wave .wave-fill {
-  fill: rgba(255, 255, 255, 0.05);
+  fill: var(--fold-panel);
 }
 
 .site-footer > .section-wave .wave-fill {
-  fill: rgba(2, 8, 18, 0.78);
+  fill: var(--fold-base);
 }
 
 [data-surface="base"] > .section-wave .wave-line {
@@ -1950,11 +2048,11 @@ main > section[data-surface="panel"] {
 
 /* Cantos: estendem a cor de cada dobra até a borda ondulada, deixando a divisão na onda. */
 .ribbon-fill-top {
-  fill: transparent;
+  fill: #020812;
 }
 
 .ribbon-fill-bottom {
-  fill: transparent;
+  fill: var(--fold-panel);
 }
 
 /* Vidro dentro da fita: traço grosso no eixo central, cujas bordas paralelas batem com as linhas. */
@@ -2076,7 +2174,32 @@ main > section[data-surface="panel"] {
   }
 
   .professor-section {
-    grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1fr);
+    grid-template-columns:
+      minmax(var(--pad), 1fr)
+      minmax(360px, 460px)
+      minmax(0, 650px)
+      minmax(var(--pad), 1fr);
+    column-gap: 24px;
+  }
+
+  .professor-section > .section-divider-white {
+    grid-column: 1 / -1;
+  }
+
+  .professor-section > .professor-media {
+    grid-column: 2;
+    width: 100%;
+    margin: 0;
+  }
+
+  .professor-section > .professor-copy {
+    grid-column: 3;
+    width: 100%;
+    margin: 0;
+  }
+
+  .signup-section {
+    justify-items: center;
   }
 
   .outcome-grid {
@@ -2140,8 +2263,8 @@ main > section[data-surface="panel"] {
 
 @media (max-width: 480px) {
   .section-divider-white {
-    --divider-h: 188px;
-    width: 190vw;
+    --divider-h: 150px;
+    width: 168vw;
   }
 
   .hero-still,
