@@ -10,6 +10,15 @@
   --line: rgba(148, 163, 184, 0.2);
   --soft: #eef6fb;
   --card: #ffffff;
+  --fold-base: #020914;
+  --fold-panel: #071728;
+  --fold-base-bg:
+    radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.1), transparent 25rem),
+    linear-gradient(180deg, rgba(5, 17, 32, 0.99), rgba(2, 9, 20, 0.99));
+  --fold-panel-bg:
+    radial-gradient(circle at 16% 18%, rgba(0, 210, 255, 0.11), transparent 23rem),
+    radial-gradient(circle at 88% 34%, rgba(98, 231, 255, 0.06), transparent 20rem),
+    linear-gradient(180deg, rgba(8, 26, 45, 0.99), rgba(4, 13, 24, 0.99));
   --shadow: 0 24px 70px rgba(5, 17, 32, 0.14);
   --radius: 8px;
   --max: 1120px;
@@ -148,12 +157,26 @@ video {
 .page-panel {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   max-width: var(--max);
   margin: 0 auto;
   border-inline: 1px solid rgba(0, 210, 255, 0.08);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.12), transparent 24rem),
-    linear-gradient(180deg, rgba(5, 17, 32, 0.98), rgba(4, 13, 24, 0.98));
+  background: var(--fold-base-bg);
+}
+
+.page-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.32), transparent);
+  pointer-events: none;
+}
+
+.page-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .section-kicker {
@@ -343,6 +366,7 @@ h1 strong {
   gap: clamp(28px, 6vw, 78px);
   align-items: center;
   padding: clamp(62px, 8vw, 104px) clamp(28px, 6vw, 82px);
+  background: var(--fold-panel-bg);
 }
 
 .story-section::before,
@@ -352,6 +376,7 @@ h1 strong {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   background:
     linear-gradient(110deg, transparent 0 48%, rgba(0, 210, 255, 0.05) 48% 49%, transparent 49% 100%),
     radial-gradient(circle at 18% 28%, rgba(0, 210, 255, 0.1), transparent 18rem);
@@ -433,9 +458,7 @@ h1 strong {
 
 .pain-strip {
   padding: clamp(58px, 7vw, 88px) clamp(28px, 6vw, 82px);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.11), transparent 26rem),
-    linear-gradient(180deg, rgba(8, 26, 45, 0.98), rgba(5, 17, 32, 0.98));
+  background: var(--fold-base-bg);
 }
 
 .section-head {
@@ -555,6 +578,7 @@ h1 strong {
 .path-section {
   min-height: 760px;
   padding: clamp(66px, 8vw, 104px) clamp(28px, 6vw, 82px);
+  background: var(--fold-panel-bg);
 }
 
 .path-line {
@@ -616,6 +640,7 @@ h1 strong {
   gap: clamp(28px, 6vw, 74px);
   align-items: end;
   padding: clamp(66px, 8vw, 104px) clamp(28px, 6vw, 82px) 0;
+  background: var(--fold-panel-bg);
 }
 
 .professor-copy {
@@ -665,6 +690,7 @@ h1 strong {
   grid-template-columns: minmax(0, 0.84fr) minmax(380px, 1fr);
   gap: clamp(28px, 6vw, 78px);
   align-items: start;
+  background: var(--fold-base-bg);
 }
 
 .outcome-list {
@@ -693,6 +719,7 @@ h1 strong {
   grid-template-columns: minmax(0, 0.8fr) minmax(380px, 520px);
   gap: clamp(30px, 5vw, 70px);
   align-items: start;
+  background: var(--fold-panel-bg);
 }
 
 .signup-copy {
@@ -755,9 +782,7 @@ h1 strong {
 }
 
 .faq-section {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.09), transparent 22rem),
-    var(--night);
+  background: var(--fold-base-bg);
 }
 
 .faq-list {
