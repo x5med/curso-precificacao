@@ -19,6 +19,11 @@ export const metadata = {
   title: "Curso de Precificação Médica | Dr. Fábio Rodrigues",
   description:
     "Aprenda a precificar consultas médicas com método, proteger margem e comunicar valor com mais segurança na medicina particular.",
+  icons: {
+    icon: "/assets/Logo%20X5%20Med%20Branca.png",
+    shortcut: "/assets/Logo%20X5%20Med%20Branca.png",
+    apple: "/assets/Logo%20X5%20Med%20Branca.png",
+  },
   openGraph: {
     title: "Curso de Precificação Médica | Dr. Fábio Rodrigues",
     description:

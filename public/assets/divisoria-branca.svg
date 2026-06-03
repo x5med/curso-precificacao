@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2172" height="724" viewBox="0 0 2172 724" fill="none">
+  <g stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left and right divider lines -->
+    <path d="M 40 303 H 1000" />
+    <path d="M 1172 303 H 2132" />
+
+    <!-- centered semicircle notch -->
+    <path d="M 1000 303
+             C 1008 303, 1014 309, 1016 316
+             C 1034 377, 1080 410, 1086 410
+             C 1092 410, 1138 377, 1156 316
+             C 1158 309, 1164 303, 1172 303" />
+
+    <!-- arrow chevron -->
+    <path d="M 1048 314 L 1086 348 L 1124 314" stroke-width="10" />
+  </g>
+</svg>
