@@ -279,8 +279,8 @@ const testimonials = [
 // TODO: definir os valores reais da oferta (ou trocar por modelo "falar com o time").
 const OFFER = {
   fromPrice: "R$ 1.997",
-  priceValue: 294,
-  installment: "ou 12x de R$ 97",
+  priceValue: 297,
+  installment: "à vista ou 12x de R$ 30,72",
 }
 
 // TODO: ajustar conforme a logistica real da turma.
@@ -841,7 +841,7 @@ export default function LandingExperience() {
               </ul>
               <div className="offer-price">
                 <span className="offer-from">de {OFFER.fromPrice} por</span>
-                <strong><CountUp to={OFFER.priceValue} prefix="R$ " /></strong>
+                <strong><CountUp to={OFFER.priceValue} prefix="R$ " suffix=",00" /></strong>
                 <span className="offer-installment">{OFFER.installment}</span>
               </div>
               <a className="btn btn-primary" href="#inscricao" onClick={openSignup}>
